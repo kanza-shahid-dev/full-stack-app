@@ -84,7 +84,7 @@ export class CreatePostComponent {
           _id: resData.id,
           title: resData.title,
           content: resData.content,
-          image: resData.imagePath,
+          imagePath: resData.imagePath,
         };
         this.postForm.reset();
         this.imagePreview = '';

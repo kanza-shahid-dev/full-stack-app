@@ -1,3 +1,11 @@
 <mat-toolbar color="primary">
   <span>My Blog</span>
+  <div class="buttons-container">
+    @if(userLoggedIn) {
+    <a class="button logout" (click)="onLogOut()">Logout</a>
+    } @else {
+    <a class="button" routerLink="/login">Login</a>
+    <a class="button" routerLink="/signup">Signup</a>
+    }
+  </div>
 </mat-toolbar>

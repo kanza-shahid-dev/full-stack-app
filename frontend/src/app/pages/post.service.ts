@@ -18,7 +18,7 @@ export class PostService {
     postData.append('title', post.title);
     postData.append('content', post.content);
     console.log('Add', post);
-    if (post.image) postData.append('image', post.image);
+    if (post.imagePath) postData.append('image', post.imagePath);
 
     return this.httpClient.post('http://localhost:3000/api/posts', postData);
   }

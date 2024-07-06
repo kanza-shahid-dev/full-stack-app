@@ -7,3 +7,9 @@ mat-accordion {
 mat-expansion-panel {
   width: 50%;
 }
+.post-image {
+  width: 100%;
+}
+.post-image img {
+  width: 100%;
+}

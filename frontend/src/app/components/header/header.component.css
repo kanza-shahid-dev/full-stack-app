@@ -1,0 +1,13 @@
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+.button {
+  margin: 10px 10px;
+}
+a {
+  cursor: pointer;
+}
+.logout {
+  color: rgb(235, 202, 202);
+}
