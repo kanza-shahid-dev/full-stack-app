@@ -14,7 +14,13 @@ export class PostService {
   }
 
   addPost(post: Post): Observable<any> {
-    return this.httpClient.post('http://localhost:3000/api/posts', post);
+    const postData = new FormData();
+    postData.append('title', post.title);
+    postData.append('content', post.content);
+    console.log('Add', post);
+    if (post.image) postData.append('image', post.image);
+
+    return this.httpClient.post('http://localhost:3000/api/posts', postData);
   }
 
   editPost(id: string): Observable<any> {

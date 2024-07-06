@@ -67,6 +67,7 @@ export class CreatePostComponent {
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result as string;
+      this.postForm.setValue({ image: reader.result });
     };
 
     reader.readAsDataURL(file as Blob);
@@ -78,18 +79,22 @@ export class CreatePostComponent {
 
     this.postService.addPost(this.postForm.value).subscribe({
       next: (data) => {
+        let resData = data.post;
         let newPost: Post = {
-          _id: data.postId,
-          title: this.postForm.get('title')?.value,
-          content: this.postForm.get('content')?.value,
+          _id: resData.id,
+          title: resData.title,
+          content: resData.content,
+          image: resData.imagePath,
         };
         this.postForm.reset();
+        this.imagePreview = '';
         this.postCreated.emit(newPost);
       },
       error: (err) => {
         console.log('error', err);
       },
       complete: () => {
+        this.formSubmitAttempt = false;
         console.log('complete');
       },
     });

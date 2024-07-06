@@ -2,7 +2,12 @@
   <mat-card appearance="outlined">
     <mat-card-content>
       <mat-form-field>
-        <input matInput formControlName="title" placeholder="Title" />
+        <input
+          matInput
+          formControlName="title"
+          placeholder="Title"
+          type="text"
+        />
       </mat-form-field>
       @if(formSubmitAttempt && isFieldInvalid('title')) {
       <small class="form-input-error">Enter Title</small>
@@ -19,7 +24,7 @@
         type="file"
         #filePicker
         (change)="OnImagePicked($event)"
-        accept="image/png, image/gif, image/jpeg"
+        accept="image/png, image/jpg, image/jpeg"
       />
 
       @if(imagePreview) {
