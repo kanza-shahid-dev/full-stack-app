@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
     // if split fails
     console.log("error", error);
     res.status(401).json({
-      message: "Auth Failed",
+      message: "User not authenticated",
     });
   }
 };
