@@ -4,8 +4,8 @@
     @if(userLoggedIn) {
     <a class="button logout" (click)="onLogOut()">Logout</a>
     } @else {
-    <a class="button" routerLink="/login">Login</a>
-    <a class="button" routerLink="/signup">Signup</a>
+    <a class="button" routerLink="/auth/login">Login</a>
+    <a class="button" routerLink="/auth/signup">Signup</a>
     }
   </div>
 </mat-toolbar>
