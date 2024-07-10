@@ -3,7 +3,6 @@ const Post = require("../models/post");
 exports.getPosts = (req, res, next) => {
   Post.find()
     .then((documents) => {
-      console.log("Doc", documents);
       res.status(200).json({
         message: "Posts fetched successfully!",
         posts: documents,
@@ -22,7 +21,9 @@ exports.createPost = (req, res, next) => {
     title: req.body.title,
     content: req.body.content,
     imagePath: req.file ? url + "/images/" + req.file.filename : "",
+    creator: req.userData.userId, //get user id from check-auth middleware
   });
+
   post
     .save()
     .then((createdPost) => {
@@ -43,9 +44,10 @@ exports.createPost = (req, res, next) => {
 };
 
 exports.deletePost = (req, res, next) => {
-  Post.deleteOne({ _id: req.params.id })
+  Post.deleteOne({ _id: req.params.id, creator: req.userData.userId })
     .then((result) => {
-      res.status(200).json({ message: "Post deleted!" });
+      if (result.n > 0) res.status(200).json({ message: "Post deleted!" });
+      else res.status(401).json({ message: "Not authorized" });
     })
     .catch((error) => {
       res.status(500).json({
